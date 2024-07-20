@@ -1,0 +1,9 @@
+.dashboardContainer {
+    width: 60%;
+    display: flex;
+    margin-top: 10%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: #C0C0C8 */
+}
