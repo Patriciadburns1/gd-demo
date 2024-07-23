@@ -4,13 +4,14 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
+import CloudSyncIcon from '@mui/icons-material/CloudSync'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormGroup from '@mui/material/FormGroup'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
+import { Link } from 'react-router-dom'
 
 const MenuBar = () => {
     const [auth, setAuth] = React.useState(true)
@@ -30,22 +31,11 @@ const MenuBar = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <FormGroup>
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={auth}
-                            onChange={handleChange}
-                            aria-label="login switch"
-                        />
-                    }
-                    label={auth ? 'Logout' : 'Login'}
-                />
-            </FormGroup>
             <AppBar
                 position="static"
                 sx={{
-                    backgroundColor: 'gray',
+                    backgroundColor: 'transparent',
+                    color: '#747070',
                 }}
             >
                 <Toolbar>
@@ -56,17 +46,31 @@ const MenuBar = () => {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <MenuIcon />
+                        <CloudSyncIcon fontSize="large" />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, float: 'left' }}
-                    >
-                        SMTS
-                    </Typography>
+
+                    <Box sx={{ flexGrow: 1, float: 'left' }}>
+                        <Typography
+                            variant="h5"
+                            component="div"
+                            sx={{
+                                flexGrow: 1,
+                                fontWeight: 750,
+                                marginLeft: '6px',
+                            }}
+                        >
+                            GDIT
+                        </Typography>
+                        <Typography
+                            variant="h4"
+                            component="div"
+                            sx={{ flexGrow: 1 }}
+                        >
+                            SMTS
+                        </Typography>
+                    </Box>
                     {auth && (
-                        <div>
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -96,7 +100,32 @@ const MenuBar = () => {
                                     Signed in as PBurns
                                 </MenuItem>
                             </Menu>
-                        </div>
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={auth}
+                                            onChange={handleChange}
+                                            aria-label="login and logout switch"
+                                            color="default"
+                                        />
+                                    }
+                                    label={auth ? 'Logout' : 'Login'}
+                                />
+                            </FormGroup>
+                            <Link to="/help">
+                                <Typography
+                                    aria-label="access help document"
+                                    component="span"
+                                    sx={{
+                                        textDecoration: 'none',
+                                        color: '#747070',
+                                    }}
+                                >
+                                    Help
+                                </Typography>
+                            </Link>
+                        </Box>
                     )}
                 </Toolbar>
             </AppBar>

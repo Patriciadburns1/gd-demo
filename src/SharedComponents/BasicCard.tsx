@@ -5,20 +5,22 @@ import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { Link } from 'react-router-dom'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 
 interface CardProps {
     title: string
     description?: string // optional prop
     onClick?: () => void
-    link?: string
+    link: string
+    icon?: boolean
 }
 
-const BasicCard: React.FC<CardProps> = ({ title, description, link}) => {
+const BasicCard: React.FC<CardProps> = ({ title, description, link }) => {
     return (
-        <Card sx={{ minWidth: 275, minHeight: 225, margin: '1em' }}>
+        <Card sx={{ minWidth: 275, minHeight: 205, margin: '1em' }}>
             <CardContent>
                 <Typography
-                    sx={{ fontSize: 14 }}
+                    sx={{ fontSize: 18, fontWeight: 600 }}
                     color="text.secondary"
                     gutterBottom
                 >
@@ -29,15 +31,12 @@ const BasicCard: React.FC<CardProps> = ({ title, description, link}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-            {link ? (
-          <Button component={Link} to={link} size="small">
-            Go to page
-          </Button>
-        ) : (
-          <Button size="small">Go to page</Button>
-        )}
+                {link ? (
+                    <Button component={Link} to={link} size="small">
+                        <OpenInNewIcon sx={{ color: '#747070' }} />
+                    </Button>
+                ) : null}
             </CardActions>
-
         </Card>
     )
 }
